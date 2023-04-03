@@ -1,0 +1,10 @@
+.movie-cover {
+    text-align: center;
+    height: 300px;
+
+}
+
+.movie-cover img {
+    object-fit: cover;
+    height: 100%;
+}

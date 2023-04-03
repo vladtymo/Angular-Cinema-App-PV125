@@ -1,0 +1,15 @@
+<div class="movie-cover">
+    <img mat-card-image src={{movie?.cover}} alt="Movie Image">
+</div>
+<h1>{{movie?.title}}</h1>
+<hr>
+<p>Genres: {{movie?.genres?.join(' / ')}}</p>
+<p>Year: {{movie?.year}}</p>
+<p>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit perferendis libero sapiente ab delectus asperiores
+    eaque voluptate nostrum doloribus placeat ad, laudantium iure, veniam quibusdam quis similique! Voluptate, error
+    enim.
+</p>
+<div>
+    <button mat-flat-button color="primary" routerLink="/movie-list">Show All</button>
+</div>

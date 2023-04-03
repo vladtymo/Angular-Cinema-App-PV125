@@ -1,0 +1,8 @@
+.movie-card {
+    width: 300px;
+}
+
+.movie-header-image {
+    background-image: url(../../../../assets/7626.png);
+    background-size: cover;
+}

@@ -1,0 +1,41 @@
+<h1>Create New Movie</h1>
+
+<div>
+    <form [formGroup]="movieForm" (ngSubmit)="showResult()">
+        <div>
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="title" type="text" placeholder="Movie Title" required>
+            </mat-form-field>
+        </div>
+        <div class="col-2">
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="year" type="number" placeholder="Movie Year">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="cover" type="url" placeholder="Cover URL">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Genres</mat-label>
+                <mat-select multiple formControlName="genres">
+                    <mat-option *ngFor="let gen of genres" [value]="gen">
+                        {{gen}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="duration" type="time" value="01:20" placeholder="Duration">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-checkbox formControlName="isCurrent">Current Movie</mat-checkbox>
+        </div>
+
+        <button mat-flat-button type="submit" color="accent">Create</button>
+    </form>
+</div>
