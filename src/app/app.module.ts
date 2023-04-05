@@ -13,6 +13,7 @@ import { MovieDetailsComponent } from './components/movies/movie-details/movie-d
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddMovieComponent } from './components/movies/add-movie/add-movie.compo
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,

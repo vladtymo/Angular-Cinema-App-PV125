@@ -2,9 +2,9 @@
     <mat-card-header>
         <div mat-card-avatar class="movie-header-image"></div>
         <mat-card-title>{{movie?.title}}</mat-card-title>
-        <mat-card-subtitle>{{movie?.genres?.join(' / ')}}</mat-card-subtitle>
+        <mat-card-subtitle>{{genres?.join(' / ')}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src={{movie?.cover}} alt="Movie Image">
+    <img mat-card-image src={{movie?.coverUrl}} alt="Movie Image">
     <!-- <mat-card-content>
         <p>
         </p>

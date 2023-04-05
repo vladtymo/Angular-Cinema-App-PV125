@@ -3,9 +3,13 @@ import { Time } from "@angular/common";
 export interface IMovie {
     id: number;
     title: string;
-    cover: string;
+    coverUrl: string;
     year: number;
-    isCurrent: boolean;
-    genres?: string[];
+    genres?: IGenre[];
     duration?: string;
+};
+
+export interface IGenre {
+    id: number;
+    name: string
 };

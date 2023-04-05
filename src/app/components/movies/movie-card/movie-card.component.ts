@@ -1,6 +1,6 @@
 import { MOVIES } from './../movies-mock-data';
 import { IMovie } from './../movie';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,8 +8,15 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
-export class MovieCardComponent {
-
+export class MovieCardComponent implements OnInit {
+  
   @Input()
   movie?: IMovie;
+  
+  genres: string[] | undefined = [];
+  
+  ngOnInit(): void {
+    this.genres = this.movie?.genres?.map(g => g.name);
+  }
+  
 }
