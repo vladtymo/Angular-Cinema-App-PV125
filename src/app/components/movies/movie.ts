@@ -13,3 +13,11 @@ export interface IGenre {
     id: number;
     name: string
 };
+
+export interface ICreateMovieDto {
+    title: string;
+    coverUrl: string;
+    year: number;
+    genresIds?: number[];
+    duration?: string;
+};

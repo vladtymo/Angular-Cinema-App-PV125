@@ -17,26 +17,24 @@
                 <input matInput formControlName="coverUrl" type="url" placeholder="Cover URL">
             </mat-form-field>
         </div>
-        <!-- <div>
+        <div>
             <mat-form-field appearance="fill">
                 <mat-label>Genres</mat-label>
-                <mat-select multiple formControlName="genres">
-                    <mat-option *ngFor="let gen of genres" [value]="gen">
-                        {{gen}}
+                <mat-select multiple formControlName="genreIds">
+                    <mat-option *ngFor="let gen of genres" 
+                                [value]="gen.id">
+                            {{gen.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div> -->
-        <p>TODO: genres</p>
+        </div>
         <div>
             <mat-form-field appearance="fill">
                 <input matInput formControlName="duration" type="time" value="01:20" placeholder="Duration">
             </mat-form-field>
         </div>
-        <div>
-            <mat-checkbox formControlName="isCurrent">Current Movie</mat-checkbox>
-        </div>
 
         <button mat-flat-button type="submit" color="accent">Create</button>
+        <button mat-flat-button type="button" color="primary" routerLink="/movie-list">Go Back</button>
     </form>
 </div>

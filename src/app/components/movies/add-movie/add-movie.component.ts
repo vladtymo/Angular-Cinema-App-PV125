@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IMovie } from '../movie';
+import { ICreateMovieDto, IGenre, IMovie } from '../movie';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -8,11 +8,9 @@ import { MovieService } from '../movie.service';
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.css']
 })
-export class AddMovieComponent {
+export class AddMovieComponent implements OnInit {
 
-  genres: string[] = [
-    "Action", 'Drama', "War", "Crime", "Survival", "Adventure", "Sci-Fi", "Thriller"
-  ]
+  genres: IGenre[] = [];
 
   // form groups - contains all input data
   // movieForm = new FormGroup({
@@ -28,16 +26,18 @@ export class AddMovieComponent {
     title: ['', Validators.required],
     year: [new Date().getFullYear()],
     coverUrl: [''],
-    //genres: [[]],
+    genreIds: [[]],
     duration: '01:33',
-    isCurrent: [false]
   });
 
   constructor(private fb: FormBuilder, private movieService: MovieService) {
   }
+  ngOnInit(): void {
+    this.movieService.getGenres().subscribe(res => this.genres = res);
+  }
 
   showResult() {
-    let item: IMovie = this.movieForm.value as IMovie;
+    let item: ICreateMovieDto = this.movieForm.value as ICreateMovieDto;
     item.duration += ":00";
     console.log(item);
 

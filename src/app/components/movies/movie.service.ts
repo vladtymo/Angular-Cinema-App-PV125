@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IMovie } from './movie';
+import { ICreateMovieDto, IGenre, IMovie } from './movie';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -15,6 +15,9 @@ export class MovieService {
   getAll(): Observable<IMovie[]> {
     return this.http.get<IMovie[]>(this.api);
   }
+  getGenres(): Observable<IGenre[]> {
+    return this.http.get<IGenre[]>(`${this.api}/genres`);
+  }
 
   getById(id: number): Observable<IMovie> {
     return this.http.get<IMovie>(`${this.api}/${id}`);
@@ -24,7 +27,7 @@ export class MovieService {
     return this.http.delete(`${this.api}/${id}`);
   }
 
-  create(movie: IMovie): Observable<any> {
+  create(movie: ICreateMovieDto): Observable<any> {
     return this.http.post(`${this.api}`, movie);
   }
 
