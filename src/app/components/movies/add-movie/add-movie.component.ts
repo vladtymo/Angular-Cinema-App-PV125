@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IMovie } from '../movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -26,19 +27,23 @@ export class AddMovieComponent {
   movieForm = this.fb.group({
     title: ['', Validators.required],
     year: [new Date().getFullYear()],
-    cover: [''],
-    genres: [[]],
+    coverUrl: [''],
+    //genres: [[]],
     duration: '01:33',
     isCurrent: [false]
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private movieService: MovieService) {
   }
 
   showResult() {
-    let item = this.movieForm.value;
+    let item: IMovie = this.movieForm.value as IMovie;
+    item.duration += ":00";
     console.log(item);
 
     // send to the server
+    this.movieService.create(item).subscribe(res => {
+      console.log("Movie was created successfuly!");
+    });
   }
 }
