@@ -18,5 +18,4 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.genres = this.movie?.genres?.map(g => g.name);
   }
-  
 }

@@ -3,6 +3,7 @@ import { IMovie } from './../movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-movie-cards',
@@ -12,19 +13,11 @@ import { HttpClient } from '@angular/common/http';
 export class MovieCardsComponent implements OnInit {
   movies: IMovie[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private movieService: MovieService) {
   }
 
   ngOnInit(): void {
     // load data from server
-
-    this.http.get<IMovie[]>('https://localhost:7088/api/movies').subscribe(res => {
-      
-      // ... this code automatically invokes when the operation complete ...
-      console.log(res);
-            
-      this.movies = res;
-
-    });
+    this.movieService.getAll().subscribe(res => this.movies = res);
   }
 }
