@@ -12,12 +12,16 @@ import { MovieService } from '../movie.service';
 })
 export class MovieCardsComponent implements OnInit {
   movies: IMovie[] = [];
+  loaded: boolean = false;
 
   constructor(private movieService: MovieService) {
   }
 
   ngOnInit(): void {
     // load data from server
-    this.movieService.getAll().subscribe(res => this.movies = res);
+    this.movieService.getAll().subscribe(res => {
+      this.movies = res;
+      this.loaded = true;
+    });
   }
 }

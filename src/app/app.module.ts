@@ -13,7 +13,9 @@ import { MovieDetailsComponent } from './components/movies/movie-details/movie-d
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/account/login/login.component';
+import { JwtInterceptor } from './components/account/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     MovieCardComponent,
     MovieDetailsComponent,
     HomeComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
