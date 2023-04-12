@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
 
 @Component({
@@ -6,12 +6,15 @@ import { AccountService } from '../account/account.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  isAuthorized: boolean;
+  isAuthorized: boolean = false;
 
   constructor(private accountService: AccountService) {
-    this.isAuthorized = accountService.isAuthorized();
+    
+  }
+  ngOnInit(): void {
+    this.isAuthorized = this.accountService.isAuthorized();
   }
 
   logout(): void {

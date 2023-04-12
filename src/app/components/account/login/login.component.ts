@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { ILoginRequest } from '../account';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) { }
  
   login(): void {
     if (!this.loginForm.valid) {
@@ -31,6 +32,8 @@ export class LoginComponent {
       
       this.accountService.saveToken(res.token);
       console.log("Logged In! Token: " + res.token);
+
+      this.router.navigateByUrl('/movie-list');
     });
   }
 }
