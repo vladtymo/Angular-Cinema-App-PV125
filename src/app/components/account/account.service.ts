@@ -33,10 +33,13 @@ export class AccountService {
   clearToken(): void {
     localStorage.removeItem(this.tokenKey);
   }
+  isAuthorized(): boolean {
+    return this.getToken() != null;
+  }
   saveToken(token: string): void{
     localStorage[this.tokenKey] = token;
   }
-  getToken(): string {
+  getToken(): string | null {
     return localStorage[this.tokenKey];
   }
 }

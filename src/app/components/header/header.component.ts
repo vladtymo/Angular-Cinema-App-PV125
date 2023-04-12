@@ -8,11 +8,16 @@ import { AccountService } from '../account/account.service';
 })
 export class HeaderComponent {
 
-  constructor(private accountService: AccountService) { }
+  isAuthorized: boolean;
+
+  constructor(private accountService: AccountService) {
+    this.isAuthorized = accountService.isAuthorized();
+  }
 
   logout(): void {
     this.accountService.logout().subscribe(res => {
       this.accountService.clearToken();
+      this.isAuthorized = false;
     })
   }
 }

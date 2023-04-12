@@ -2,11 +2,16 @@
     <mat-spinner></mat-spinner>
 </div>
 
-<div class="text-center" *ngIf="loaded && movies?.length == 0">
+<div *ngIf="unauthorized" class="text-center">
+    <img width="100" src="https://cdn-icons-png.flaticon.com/512/4413/4413923.png" alt="">
+    <p>Unauthorized error!</p>
+</div>
+
+<div class="text-center" *ngIf="loaded && movies && movies?.length == 0">
     <img src="https://cdn.dribbble.com/users/1785628/screenshots/5605512/media/097297f8e21d501ba45d7ce437ed77bd.gif" alt="">
     <p>There is no movies in the cinema yet!</p>
 </div>
 
-<div class="card-grid">
+<div *ngIf="movies" class="card-grid">
     <app-movie-card class="card" *ngFor="let m of movies" [movie]="m"></app-movie-card>
 </div>

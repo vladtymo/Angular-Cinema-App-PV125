@@ -11,8 +11,9 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./movie-cards.component.css']
 })
 export class MovieCardsComponent implements OnInit {
-  movies: IMovie[] = [];
+  movies?: IMovie[];
   loaded: boolean = false;
+  unauthorized = false;
 
   constructor(private movieService: MovieService) {
   }
@@ -20,8 +21,16 @@ export class MovieCardsComponent implements OnInit {
   ngOnInit(): void {
     // load data from server
     this.movieService.getAll().subscribe(res => {
+
+      console.log(res);
+      
       this.movies = res;
       this.loaded = true;
+    }, err => {
+      if (err.status == 401) {
+        this.loaded = true;
+        this.unauthorized = true;
+      }
     });
   }
 }
