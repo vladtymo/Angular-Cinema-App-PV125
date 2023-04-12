@@ -6,21 +6,14 @@ import { AccountService } from '../account/account.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  isAuthorized: boolean = false;
-
-  constructor(private accountService: AccountService) {
-    
-  }
-  ngOnInit(): void {
-    this.isAuthorized = this.accountService.isAuthorized();
+  constructor(public accountService: AccountService) { 
   }
 
   logout(): void {
     this.accountService.logout().subscribe(res => {
       this.accountService.clearToken();
-      this.isAuthorized = false;
     })
   }
 }
